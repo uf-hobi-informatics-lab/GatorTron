@@ -1,0 +1,5 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:21.02-py3
+
+%post
+    pip install git+https://github.com/NVIDIA/NeMo.git@main#egg=nemo_toolkit[all]

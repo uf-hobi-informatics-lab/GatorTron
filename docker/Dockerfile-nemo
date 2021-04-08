@@ -1,0 +1,4 @@
+FROM nvcr.io/nvidia/pytorch:21.02-py3
+
+BRACH=nlp_mp_ddp #main
+RUN pip install git+https://github.com/NVIDIA/NeMo.git@${BRACH}#egg=nemo_toolkit[all]
