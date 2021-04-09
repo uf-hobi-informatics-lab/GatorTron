@@ -1,3 +1,16 @@
+"""
+Author: bugface https://github.com/bugface
+
+running NER training and prediction with NeMo
+NeMo only support evaluation at token level, we only save the predicted results without use NeMo's evaluation
+
+NeMo use eval_loss to save best checkpoint which is not fit for NER
+We only use the last checkpoint (latest) for prediction; so we have to tune training epochs
+
+NeMo load checkpoint is not easy to use, we use .nemo file as NeMo recommanded for save and load models
+"""
+
+
 from nemo.collections import nlp as nemo_nlp
 from nemo.utils.exp_manager import exp_manager
 import traceback

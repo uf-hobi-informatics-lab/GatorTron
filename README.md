@@ -27,6 +27,4 @@ An evaluation of Gatortron using a de-identification task (i.e., detect and remo
 
 ## Fine-tuning
 - leverage the NeMo toolkit
-- 2010i2b2
-- 2012i2b2
-- UF de-identification
+- benchamark on 2010i2b2 2012i2b2
