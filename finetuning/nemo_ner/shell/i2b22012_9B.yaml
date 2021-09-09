@@ -1,0 +1,101 @@
+pretrained_model: null # pretrained TokenClassification model from list_available_models(), for example: NERModel
+trainer:
+  gpus: 1 
+  num_nodes: 1
+  max_epochs: 10
+  max_steps: null 
+  accumulate_grad_batches: 1 
+  gradient_clip_val: 1.0
+  amp_level: O1 
+  precision: 16 
+  accelerator: ddp
+  checkpoint_callback: False  
+  logger: False
+  log_every_n_steps: 1000 
+  val_check_interval: 1.0 
+  resume_from_checkpoint: null
+  replace_sampler_ddp: false
+
+exp_manager:
+  explicit_log_dir: ./2021gatortron/nemo_downstream/nemo_ner/results/9B_i2b22012 # exp_dir for your experiment, if None, defaults to "./nemo_experiments"
+  exp_dir: null
+  name: null   # The name of your model
+  version: null
+  create_tensorboard_logger: true  # Whether you want exp_manger to create a tb logger
+  create_checkpoint_callback: true  # Whether you want exp_manager to create a model checkpoint callback
+  checkpoint_callback_params:
+    save_top_k: 3
+
+model:
+  nemo_path: ${exp_manager.explicit_log_dir}/default.nemo # filename to save the model and associated artifacts to .nemo file
+  label_ids: null # will be filled during training
+  dataset:
+    data_dir: ./2021gatortron/data/ner/nemo_ner_2012i2b2_new
+    class_balancing: null # choose from [null, weighted_loss]. Weighted_loss enables the weighted class balancing of the loss, may be used for handling unbalanced classes
+    max_seq_length: 512
+    pad_label: 'O'
+    ignore_extra_tokens: false
+    ignore_start_end: false
+    use_cache: true
+    # shared among dataloaders
+    num_workers: 1
+    pin_memory: false
+    drop_last: false
+
+  train_ds:
+    text_file: text_train.txt
+    labels_file: labels_train.txt
+    shuffle: true
+    num_samples: -1
+    batch_size: 4
+
+  validation_ds:
+    text_file: text_dev.txt
+    labels_file: labels_dev.txt
+    shuffle: false
+    num_samples: -1
+    batch_size: 8
+
+  test_ds:
+    text_file: text_test.txt
+    labels_file: labels_test.txt
+    shuffle: false
+    num_samples: -1
+    batch_size: 32
+ 
+  tokenizer:
+    tokenizer_name: ${model.language_model.pretrained_model_name} # or sentencepiece
+    vocab_file: ./new_vocabs/uf_full_pubmed_wiki_cased_50k/vocab.txt # path to vocab file
+    tokenizer_model: null # only used if tokenizer is sentencepiece
+    special_tokens: null
+
+  language_model:
+    pretrained_model_name: megatron-bert-cased
+    lm_checkpoint: ./models/new_pretraining_checkpoint/9b_uf_pubmed_wiki_uf_pubmed_wiki_50k_cased/iter_0670000
+    config_file: ./models/new_pretraining_checkpoint/9b_uf_pubmed_wiki_uf_pubmed_wiki_50k_cased/config.json # json file, precedence over config
+    config: null
+
+  head:
+    num_fc_layers: 2
+    fc_dropout: 0.1
+    activation: 'relu'
+    use_transformer_init: True
+
+  optim:
+    name: adamw
+    lr: 1e-5
+    weight_decay: 0.00
+
+    sched:
+      name: WarmupAnnealing
+      # Scheduler params
+      warmup_steps: null
+      warmup_ratio: 0.1
+      last_epoch: -1
+
+hydra:
+  run:
+    dir: .
+  job_logging:
+    root:
+      handlers: null
