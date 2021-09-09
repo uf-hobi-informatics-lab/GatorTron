@@ -18,11 +18,12 @@ An evaluation of Gatortron using a de-identification task (i.e., detect and remo
 
 
 ## Pretraining
-- leverage the Megatron-LM
+- leverage the Megatron-LM (v2.2)
 - distributed pretrained models on 120+ nodes with 900+ GPUs
 - pretrainined dataset: UF notes + pubmed + wiki (500GB+ text; 100+ billion words)
-- Gatortron-base (345m parameters; L:24 H:1280 A:12; 1/4 uf notes)
-- Gatortron-large (3.9b parametersl L:48 H:2560 A: 40; all corpora)
+- Gatortron-base (345m parameters; L:24 H:1280 A:12)
+- Gatortron-medium (3.9b parameters; L:48 H:2560 A: 40)
+- Gatortron-large (8.9b parameters; L:56 H:3560 A: 56) (model architecture choice is based on https://arxiv.org/abs/2006.12467)
 
 
 ## Fine-tuning
