@@ -33,3 +33,6 @@ An evaluation of Gatortron using a de-identification task (i.e., detect and remo
 - QA benchmark on emrQA (relation + medication), BioASQ-7b-factoid
 - NLI benchmark on MedNLI
 - STS benchmark on clinical STS from 2019 n2c2 challenge
+
+## Model availability
+- the gatortron-345m model is publicly available at https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/models/gatortron_og
