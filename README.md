@@ -33,3 +33,11 @@ An evaluation of Gatortron using a de-identification task (i.e., detect and remo
 - QA benchmark on emrQA (relation + medication), BioASQ-7b-factoid
 - NLI benchmark on MedNLI
 - STS benchmark on clinical STS from 2019 n2c2 challenge
+
+
+## Cite
+please cite our paper:
+```
+Yang, X., Chen, A., PourNejatian, N. et al. A large language model for electronic health records. npj Digit. Med. 5, 194 (2022). https://doi.org/10.1038/s41746-022-00742-2
+```
+https://www.nature.com/articles/s41746-022-00742-2
