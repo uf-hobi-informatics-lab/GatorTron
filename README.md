@@ -37,7 +37,21 @@ An evaluation of Gatortron using a de-identification task (i.e., detect and remo
 ## Model availability
 - the gatortron-345m model is publicly available at https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/models/gatortron_og
 
+## Hugging Face releases
+- GatorTron-base model, 345 million: https://huggingface.co/UFNLP/gatortron-base
+- GatorTron-mediym model, 3.9 billion: https://huggingface.co/UFNLP/gatortron-medium
+## How to use
+```python
+from huggingface_hub import login
+from transformers import AutoModel, AutoTokenizer, AutoConfig
 
+tokinizer= AutoTokenizer.from_pretrained('UFNLP/gatortron-medium')
+config=AutoConfig.from_pretrained('UFNLP/gatortron-medium')
+mymodel=AutoModel.from_pretrained('UFNLP/gatortron-medium')
+
+encoded_input=tokinizer("Bone scan:  Negative for distant metastasis.", return_tensors="pt")
+encoded_output = mymodel(**encoded_input)
+```
 ## Cite
 please cite our paper:
 ```
