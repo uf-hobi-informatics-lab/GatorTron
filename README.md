@@ -55,6 +55,6 @@ encoded_output = mymodel(**encoded_input)
 ## Cite
 please cite our paper:
 ```
-Yang, X., Chen, A., PourNejatian, N. et al. A large language model for electronic health records. npj Digit. Med. 5, 194 (2022). https://doi.org/10.1038/s41746-022-00742-2
+Yang X, Chen A, PourNejatian N, Shin HC, Smith KE, Parisien C, Compas C, Martin C, Costa AB, Flores MG, Zhang Y, Magoc T, Harle CA, Lipori G, Mitchell DA, Hogan WR, Shenkman EA, Bian J, Wu Y†. A large language model for electronic health records. Npj Digit Med. Nature Publishing Group; . 2022 Dec 26;5(1):1–9. https://www.nature.com/articles/s41746-022-00742-2
 ```
 https://www.nature.com/articles/s41746-022-00742-2
