@@ -40,7 +40,11 @@ An evaluation of Gatortron using a de-identification task (i.e., detect and remo
 ## Hugging Face releases
 - GatorTron-base model, 345 million: https://huggingface.co/UFNLP/gatortron-base
 - GatorTron-mediym model, 3.9 billion: https://huggingface.co/UFNLP/gatortron-medium
+
 ## How to use
+The GatorTron series models are **Encoder only architecture**, therefore, the models aim to solve **natural language understanding** problems like NER, RE, MRC etc. The model is **not suitable for generative tasks**.
+
+### huggingface
 ```python
 from huggingface_hub import login
 from transformers import AutoModel, AutoTokenizer, AutoConfig
@@ -51,7 +55,15 @@ mymodel=AutoModel.from_pretrained('UFNLP/gatortron-medium')
 
 encoded_input=tokinizer("Bone scan:  Negative for distant metastasis.", return_tensors="pt")
 encoded_output = mymodel(**encoded_input)
+
+# then you can feed encoded_output to downstream task layers for different usecases e.g., NER, RE, MRC etc.
 ```
+
+
+## Disclaimer
+Although we did extension data checking during the training process to ensure the compliance of the trained model to the best of our ability, due to the complexity of the data and the diversity of language model usage scenarios, we cannot guarantee that the model will generate correct and reasonable output in all scenarios. Please be aware that there is still a risk of the model producing problematic outputs. We will not be responsible for any risks and issues resulting from misuse, misguidance, illegal usage, and related misinformation, as well as any associated data security concerns.
+
+
 ## Cite
 please cite our paper:
 ```
